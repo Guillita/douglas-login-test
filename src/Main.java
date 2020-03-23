@@ -23,8 +23,8 @@ public class Main {
         user.setPassword(args[1]);
 		String loginURL = "https://www.douglas.de/mydouglas/login";
 		IHomePage homePage = new HomePage(loginURL);  
-        //new Success().testLoginSuccess(new Browsers("Chrome", loginURL).getWebDriver(), homePage, user, userPage);       
-        //new WrongCredentials().testLoginWrongCredentials(new Browsers("Chrome", loginURL).getWebDriver(), homePage, user);  
+        new Success().testLoginSuccess(new Browsers("Chrome", loginURL).getWebDriver(), homePage, user, userPage);       
+        new WrongCredentials().testLoginWrongCredentials(new Browsers("Chrome", loginURL).getWebDriver(), homePage, user);  
 		try {
 			ICaptchaForm captchaForm = new CaptchaForm();
 			new ResetCredentials().testLoginResetCredentials(new Browsers("Chrome", loginURL).getWebDriver(), homePage, user, captchaForm);
