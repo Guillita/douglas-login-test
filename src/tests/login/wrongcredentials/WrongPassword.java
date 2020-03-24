@@ -1,6 +1,5 @@
 package tests.login.wrongcredentials;
 
-import org.junit.Assert;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +13,8 @@ import components.HomePage.IHomePage;
 /* This class test the following requirement:
  * 
  *  - As a user I would like to receive an error message, if I enter wrong credentials.
+ *  
+ * In this test we check when the user enters a wrong password.
  */
 public class WrongPassword extends WrongCredentials {
 	
@@ -30,7 +31,6 @@ public class WrongPassword extends WrongCredentials {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(homePage.getWrongCredentialsErrorFormName())));
         checkWrongCredentialsErrorMessagePresence(webDriver, homePage);      
         
-        
         webDriver.quit();
 	}
 	
@@ -45,15 +45,5 @@ public class WrongPassword extends WrongCredentials {
 		password.click();
         password.sendKeys(user.getWrongPassword());
 	}
-
-    public void clickOnLoginSubmitButtonFromHomePage(WebDriver webDriver, IHomePage homePage) {
-    	WebElement loginButton = homePage.findElementByName(webDriver, homePage.getLoginSubmitButtonName());
-        loginButton.submit();
-    }
-    
-    public void checkWrongCredentialsErrorMessagePresence(WebDriver webDriver, IHomePage homePage) {
-        String bodyText = homePage.findElementByName(webDriver, homePage.getWrongCredentialsErrorFormName()).getText();
-        Assert.assertTrue("Text not found!", bodyText.contains(homePage.getWrongCredentialsErrorMessage()));
-    }
 
 }
