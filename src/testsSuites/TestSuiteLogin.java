@@ -1,10 +1,10 @@
 package testsSuites;
 
 import java.io.IOException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import User.IUser;
-import components.CaptchaForm.CaptchaForm;
-import components.CaptchaForm.ICaptchaForm;
 import components.HomePage.HomePage;
 import components.HomePage.IHomePage;
 import components.UserPage.IUserPage;
@@ -13,9 +13,18 @@ import driversConfiguration.Browsers;
 import net.sourceforge.tess4j.TesseractException;
 import tests.login.ResetCredentials;
 import tests.login.Success;
-import tests.login.WrongCredentials;
+import tests.login.wrongcredentials.WrongEmail;
+import tests.login.wrongcredentials.WrongPassword;
 
+/**
+ * We would like to test in this suite the login functionality according to the following requirements:
+ *	- As an user with correct credentials, I would like to be able to login to the webshop
+ *	- As a user I would like to receive an error message, if I enter wrong credentials.
+ *	- As a user, I would like to be able to reset my password if I forget my credentials.
+ */
 public class TestSuiteLogin {
+	
+	private static Logger logger = Logger.getLogger("testsSuites.TestSuiteLogin");
 	
 	IUser user = null;
 	IUserPage userPage = null;
@@ -33,25 +42,16 @@ public class TestSuiteLogin {
 		setHomePage(new HomePage(loginURL));  
 	}
 	
-	/**
-	 * We would like to test the login functionality with the following requirements:
-	 *	- As an user with correct credentials I would like to be able to login to the webshop
-	 *	- As a user I would like to receive an error message, if I enter wrong credentials.
-	 *	- As a user, I would like to be able to reset my password if I forget my credentials.
-	 *	
-	 * @throws IOException
-	 * @throws TesseractException
-	 */
-	public void testLogin() throws IOException, TesseractException {
-	    new Success().testLoginSuccess(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser(), getUserPage());       
-	    new WrongCredentials().testLoginWrongCredentials(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());  
+	public void testLogin() {
+	    new Success().testLoginSuccess(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser(), getUserPage());      
+	    new WrongEmail().testLoginWrongEmail(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());  
+	    new WrongPassword().testLoginWrongPassword(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());  
 		try {
-			ICaptchaForm captchaForm = new CaptchaForm();
-			new ResetCredentials().testLoginResetCredentials(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser(), captchaForm);
+			new ResetCredentials().testLoginResetCredentials(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());
 		} catch (IOException e) {
-			throw new IOException("Error creating captcha screenshot file.", e);
+			logger.log(Level.SEVERE, "Error ceating captcha screenshot file.");
 		} catch (TesseractException e)	{
-			throw new TesseractException("Error generating captcha text.", e);
+			logger.log(Level.SEVERE, "Error generating captcha text.");
 		} 
 	}
 	
