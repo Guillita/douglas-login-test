@@ -9,3 +9,8 @@ I have checked the following requirements:
 - As an user with correct credentials I would like to be able to login to the webshop
 - As a user I would like to receive an error message, if I enter wrong credentials.
 - As a user, I would like to be able to reset my password if I forget my credentials.
+
+INSTALL AND CONFIGURE THE FOLLOWING VERSIONS TO RUN THIS APPLICATION:<br />
+selenium-java-3.141.59<br />
+jre1.8.0_241<br />
+Tess4J-3.4.8-src<br />
