@@ -44,7 +44,7 @@ public class WrongEmail extends WrongCredentials {
 	public void setUserPasswordInHomePage(WebDriver webDriver, IHomePage homePage, IUser user) {
         WebElement password = homePage.findElementByName(webDriver, homePage.getPasswordInputName());
 		password.click();
-        password.sendKeys(user.getWrongPassword());
+        password.sendKeys(user.getPassword());
 	}
 
 }
