@@ -18,9 +18,9 @@ import tests.login.WrongCredentials;
 public class TestSuiteLogin {
 	
 	IUser user = null;
-	IUserPage userPage = new UserPage();
-	String loginURL = "https://www.douglas.de/mydouglas/login";
-	IHomePage homePage = new HomePage(loginURL);
+	IUserPage userPage = null;
+	String loginURL = "";
+	IHomePage homePage = null;
 	
 	public TestSuiteLogin(IUser user) {
 		this.user = user;
@@ -33,16 +33,25 @@ public class TestSuiteLogin {
 		setHomePage(new HomePage(loginURL));  
 	}
 	
-	public void testLogin() {
+	/**
+	 * We would like to test the login functionality with the following requirements:
+	 *	- As an user with correct credentials I would like to be able to login to the webshop
+	 *	- As a user I would like to receive an error message, if I enter wrong credentials.
+	 *	- As a user, I would like to be able to reset my password if I forget my credentials.
+	 *	
+	 * @throws IOException
+	 * @throws TesseractException
+	 */
+	public void testLogin() throws IOException, TesseractException {
 	    new Success().testLoginSuccess(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser(), getUserPage());       
-	    new WrongCredentials().testLoginWrongCredentials(new Browsers("Chrome", loginURL).getWebDriver(), getHomePage(), getUser());  
+	    new WrongCredentials().testLoginWrongCredentials(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());  
 		try {
 			ICaptchaForm captchaForm = new CaptchaForm();
-			new ResetCredentials().testLoginResetCredentials(new Browsers("Chrome", loginURL).getWebDriver(), getHomePage(), getUser(), captchaForm);
+			new ResetCredentials().testLoginResetCredentials(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser(), captchaForm);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new IOException("Error creating captcha screenshot file.", e);
 		} catch (TesseractException e)	{
-			e.printStackTrace();
+			throw new TesseractException("Error generating captcha text.", e);
 		} 
 	}
 	
