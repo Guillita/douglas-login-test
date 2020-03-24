@@ -1,9 +1,10 @@
-package User;
+package user;
 
 public class User implements IUser {
 	
 	String email = "";
 	String password = "";
+	String wrongEmail = "wrongEmail@gmail.com";
 	String wrongPassword = "WrongCredentials";
 	
 	public String getEmail() {
@@ -12,6 +13,10 @@ public class User implements IUser {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getWrongEmail() {
+		return wrongEmail;
 	}
 	
 	public String getPassword() {
