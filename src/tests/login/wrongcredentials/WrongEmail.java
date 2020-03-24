@@ -1,6 +1,5 @@
 package tests.login.wrongcredentials;
 
-import org.junit.Assert;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +13,8 @@ import components.HomePage.IHomePage;
 /* This class test the following requirement:
  * 
  *  - As a user I would like to receive an error message, if I enter wrong credentials.
+ * 
+ * In this test we check when the user enters a wrong email.
  */
 public class WrongEmail extends WrongCredentials {
 	
