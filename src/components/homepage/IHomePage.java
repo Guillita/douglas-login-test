@@ -16,9 +16,7 @@ public interface IHomePage {
 	public String getPasswordInputName();
 	
 	public String getPasswordForgottenLink();
-	
-	public String getResetLinkClass();
-	
+		
 	public String getLoginSubmitButtonName();
 	
 	public String getWrongCredentialsErrorFormName();

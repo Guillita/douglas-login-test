@@ -43,10 +43,6 @@ public class HomePage implements IHomePage {
 		return loginButtonName;
 	}
 
-	public String getResetLinkClass() {
-		return "html body.rd__view-helper responsive-design main.rd__my-douglas-login.rd__fade-on-load div.rd__container div.rd__my-douglas div.rd__user-credentials-box div.rd__row div.rd__col.rd__col--sm-12.rd__col--md-6 div.rd__user-credentials-box__content-box form div.rd__form-field.rd__form-field--floating-label.rd__form-field--error span.rd__copytext.rd__copytext--30 span.rd__copytext.rd__copytext--30 a.rd__link.rd__link--underline;";
-	}
-
 	public WebElement findElementByLinkText(WebDriver webDriver, String link) {
 		return  webDriver.findElement(By.linkText(link));
 	}
