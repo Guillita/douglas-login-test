@@ -10,8 +10,8 @@ I have checked the following requirements:
     As a user I would like to receive an error message, if I enter wrong credentials.
     As a user, I would like to be able to reset my password if I forget my credentials.
 
-INSTALL AND CONFIGURE THE FOLLOWING VERSIONS TO RUN THIS APPLICATION:
-selenium-java-3.141.59
-jre1.8.0_241
-Tess4J-3.4.8-src
-Chrome Version 80.0.3987.149 (Oficial Build) (64 bits)
+INSTALL AND CONFIGURE THE FOLLOWING VERSIONS TO RUN THIS APPLICATION: <br>
+selenium-java-3.141.59<br>
+jre1.8.0_241<br>
+Tess4J-3.4.8-src<br>
+Chrome Version 80.0.3987.149 (Oficial Build) (64 bits)<br>
