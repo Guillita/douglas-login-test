@@ -1,4 +1,4 @@
-package driversConfiguration;
+package driversconfiguration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,8 +9,8 @@ public class Browsers
     private WebDriver webDriver;
 	private String browserName;
 	private String baseURL;
-    
-    public Browsers(String browserName, String baseURL) {
+
+	public Browsers(String browserName, String baseURL) {
     	this.browserName = browserName;
     	this.baseURL = baseURL;
     	init();
@@ -28,16 +28,16 @@ public class Browsers
          switch (getBrowserName()) {
              case "Chrome":
             	 ChromeDriverConfigurated configuratedBrowser = new ChromeDriverConfigurated();
-                 webDriver = configuratedBrowser.getDriver();
+                 setWebDriver(configuratedBrowser.getDriver());
               break;
              case "IE":
-                 webDriver = new InternetExplorerDriver();
+                 setWebDriver(new InternetExplorerDriver());
              break;
              case "Firefox":
-                 webDriver = new FirefoxDriver();
+                 setWebDriver(new FirefoxDriver());
              break;
          }
-         webDriver.manage().window().maximize();
+         getWebDriver().manage().window().maximize();
          navigateToURL(getBaseURL());
     }
     
@@ -45,9 +45,9 @@ public class Browsers
          return this.webDriver;
     }
     
-    public void setDriver(WebDriver webDriver) {
+    public void setWebDriver(WebDriver webDriver) {
         this.webDriver = webDriver;
-   }
+    }
     
     public void navigateToURL(String url) {
     	getWebDriver().get(url);

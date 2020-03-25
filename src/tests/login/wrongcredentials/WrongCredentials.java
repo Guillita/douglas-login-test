@@ -3,7 +3,8 @@ package tests.login.wrongcredentials;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import components.HomePage.IHomePage;
+
+import components.homepage.IHomePage;
 
 /* This class test the following requirement:
  * 

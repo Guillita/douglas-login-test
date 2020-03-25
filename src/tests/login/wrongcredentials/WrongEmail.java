@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import User.IUser;
-import components.HomePage.IHomePage;
+import components.homepage.IHomePage;
+import user.IUser;
 
 /* This class test the following requirement:
  * 

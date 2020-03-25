@@ -1,4 +1,5 @@
-package driversConfiguration;
+
+package driversconfiguration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,8 +10,7 @@ public class ChromeDriverConfigurated {
 	WebDriver driver = null;
 	
 	public WebDriver getDriver() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Guillita\\eclipse-workspace\\qa-recruitment-test\\douglas-login-test\\drivers\\chromedriver.exe");   
-		// Initialize browser
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\drivers\\chromedriver.exe");  
 		WebDriver driver = new ChromeDriver(inizializeBrowser());
 		return driver;
 	}

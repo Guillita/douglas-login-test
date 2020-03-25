@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import User.IUser;
-import components.HomePage.IHomePage;
-import components.UserPage.IUserPage;
+import components.homepage.IHomePage;
+import components.userpage.IUserPage;
+import user.IUser;
 
 /* This class test the following requirement:
  * 
@@ -43,7 +43,7 @@ public class Success {
 	public void setUserPasswordInHomePage(WebDriver webDriver, IHomePage homePage, IUser user) {
         WebElement password = homePage.findElementByName(webDriver, homePage.getPasswordInputName());
 		password.click();
-        password.sendKeys(user.getWrongPassword());
+        password.sendKeys(user.getPassword());
 	}
 
     public void clickOnLoginSubmitButtonFromHomePage(WebDriver webDriver, IHomePage homePage) {

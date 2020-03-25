@@ -1,20 +1,20 @@
-package testsSuites;
+package testssuites;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-import User.IUser;
-import components.HomePage.HomePage;
-import components.HomePage.IHomePage;
-import components.UserPage.IUserPage;
-import components.UserPage.UserPage;
-import driversConfiguration.Browsers;
+import components.homepage.HomePage;
+import components.homepage.IHomePage;
+import components.userpage.IUserPage;
+import components.userpage.UserPage;
+import driversconfiguration.Browsers;
 import net.sourceforge.tess4j.TesseractException;
 import tests.login.ResetCredentials;
 import tests.login.Success;
 import tests.login.wrongcredentials.WrongEmail;
 import tests.login.wrongcredentials.WrongPassword;
+import user.IUser;
 
 /**
  * We would like to test in this suite the login functionality according to the following requirements:
@@ -24,22 +24,20 @@ import tests.login.wrongcredentials.WrongPassword;
  */
 public class TestSuiteLogin {
 	
-	private static Logger logger = Logger.getLogger("testsSuites.TestSuiteLogin");
+	private static Logger logger = Logger.getLogger("testssuites.TestSuiteLogin");
 	
 	IUser user = null;
 	IUserPage userPage = null;
 	String loginURL = "";
 	IHomePage homePage = null;
 	
-	public TestSuiteLogin(IUser user) {
-		this.user = user;
+	public TestSuiteLogin() {
 		init();
 	}
 	
 	private void init() {
 		setUserPage(new UserPage());
-		setLoginURL("https://www.douglas.de/mydouglas/login"); 
-		setHomePage(new HomePage(loginURL));  
+		setHomePage(new HomePage(getLoginURL()));  
 	}
 	
 	public void testLogin() {
@@ -47,7 +45,8 @@ public class TestSuiteLogin {
 	    new WrongEmail().testLoginWrongEmail(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());  
 	    new WrongPassword().testLoginWrongPassword(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());  
 		try {
-			new ResetCredentials().testLoginResetCredentials(new Browsers("Chrome", getLoginURL()).getWebDriver(), getHomePage(), getUser());
+			Browsers browser = new Browsers("Chrome", getLoginURL());
+			new ResetCredentials().testLoginResetCredentials(browser.getWebDriver(), getHomePage(), getUser());
 		} catch (IOException e) {
 			logger.log(Level.SEVERE, "Error ceating captcha screenshot file.");
 		} catch (TesseractException e)	{
@@ -55,35 +54,35 @@ public class TestSuiteLogin {
 		} 
 	}
 	
-	protected IUser getUser() {
+	public IUser getUser() {
 		return user;
 	}
 
-	protected void setUser(IUserPage user) {
-		this.userPage = user;
+	public void setUser(IUser user) {
+		this.user = user;
 	}
 
-	protected IUserPage getUserPage() {
+	public IUserPage getUserPage() {
 		return userPage;
 	}
 
-	protected void setUserPage(IUserPage userPage) {
+	public void setUserPage(IUserPage userPage) {
 		this.userPage = userPage;
 	}
 
-	protected String getLoginURL() {
+	public String getLoginURL() {
 		return loginURL;
 	}
 
-	protected void setLoginURL(String loginURL) {
+	public void setLoginURL(String loginURL) {
 		this.loginURL = loginURL;
 	}
 
-	protected IHomePage getHomePage() {
+	public IHomePage getHomePage() {
 		return homePage;
 	}
 
-	protected void setHomePage(IHomePage homePage) {
+	public void setHomePage(IHomePage homePage) {
 		this.homePage = homePage;
 	}
 
