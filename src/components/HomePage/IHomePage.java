@@ -1,4 +1,4 @@
-package components.HomePage;
+package components.homepage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ public interface IHomePage {
 	    
     public WebElement findElementByName(WebDriver webDriver, String name);
     
-    public WebElement findElementByCssSelector(WebDriver webdriver, String cssSelector);
+    public WebElement findElementByLinkText(WebDriver webdriver, String link);
     
 	public String getEmailInputName();
 
